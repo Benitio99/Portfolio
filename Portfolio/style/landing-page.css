@@ -1,0 +1,167 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	color: #828282;
+}
+
+.main-head {
+  grid-area: header;
+}
+.content {
+  grid-area: content;
+}
+.main-nav {
+  grid-area: nav;
+}
+.ad {
+  grid-area: ad;
+}
+.main-footer {
+  grid-area: footer;
+}
+.wrapper {
+	padding: 3em;
+	background: #282828;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-areas: 
+    "header"
+    "nav"
+    "content"
+    "sidebar"
+    "ad"
+    "footer";
+}
+.wrapper  > * {
+	border: solid .25em #190061;
+	background: #ccf6f1;
+}
+.side {
+	height: 100%;
+	left: 0%;
+	grid-area: sidebar;
+}
+.grid-container {
+	position: relative;
+	height: 80vmax;
+	background: #159;
+}
+.landing-grid {
+	position: relative;
+	width: 50%;
+	height: 50%;
+	display:grid;
+	margin: auto;
+	top: 15%;
+	grid-template-columns: [first-col] 1fr [second-col] 1fr [third-col] 1fr [fourth-col] 1fr;
+	grid-template-rows: [first-row] 1fr [second-row] 1fr [third-row] 1fr [fourth-row] 1fr;
+	grid-template-areas:
+		"games games programming about"
+		"games games programming contact"
+		"web design design links"
+		"web . inspiration inspiration";
+	grid-gap: 3em;
+	perspective: (1000px);
+	perspective-origin: 200px -150px; 
+	transform: rotate(-15deg) skew(10deg, 5deg);
+
+}
+.grid-item {
+	transform-style: preserve-3d;
+	z-index: 1;
+	border-top: solid.01em #fff;
+	border-right: solid.01em #fff;
+	
+}
+.grid-item p:before, .grid-item p:after{
+	content: ' ';
+	position: absolute;
+	opacity: 1;
+	border: solid.01em #fff;
+}
+.grid-item p:before{
+	top: 9px;
+	left: -20px;
+	height: 100%;
+	width: 18px;
+	transform: rotate(0deg) skewY(-45deg);
+	background: #ededed;
+	z-index: -2;
+}
+.grid-item p:after{
+	bottom: -20px;
+	left: -10px;
+	height: 18px;
+	width: 100%;
+	transform: rotate(0deg) skewX(-45deg);
+	background: #bbb;
+	z-index: -1;
+}
+
+.grid-item:hover {
+	z-index: 10;
+	transition: transform .5s ease-in-out;
+	transform: rotate(10deg) translate3d(3em, 3em, 10em) scale(1.5);
+	perspective: 0px;
+	
+}
+.games {
+	background: white;
+	grid-area: games;
+}
+.programming {
+	background: teal;
+	grid-area: programming;
+}
+.web {
+	background: green;
+	grid-area: web;
+}
+.design {
+	background: yellow;
+	grid-area: design;
+}
+.inspiration {
+	background: grey;
+	grid-area: inspiration;
+}
+.links {
+	background: silver;
+	grid-area: links;
+}
+.about {
+	background: blue;
+	grid-area: about;
+}
+.contact {
+	background: red;
+	grid-area: contact;
+}
+
+@media (min-width: 500px) {
+  .wrapper {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: 
+      "header  header"
+      "nav     nav"
+      "sidebar content"
+      "ad      footer";
+  }
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 700px) {
+  .wrapper {
+    grid-template-columns: 1fr 7fr 1fr;
+    grid-template-areas: 
+      "header header  header"
+      "nav    content sidebar"
+      "nav    content ad"
+      "footer footer  footer"
+   }
+   nav ul {
+     flex-direction: column;
+   }
+}
